@@ -3,6 +3,13 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  let data = null;
+  let err = null;
+  function getUser(){
+    fetch("http://localhost:3000/api/hello")
+        .then((response) => data = response.json())
+        .catch((error) => err = error)
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -48,6 +55,11 @@ export default function Home() {
             <p>
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
+          </a>
+          <a
+              className={styles.cardWide}
+              onClick={getUser}
+          >
           </a>
         </div>
       </main>
